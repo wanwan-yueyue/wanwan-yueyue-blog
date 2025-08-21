@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "dev": "vitepress dev docs",      
+    "build": "vitepress build docs",  
+    "serve": "vitepress serve docs"   
   },
   "devDependencies": {
     "unplugin-icons": "^22.2.0",
