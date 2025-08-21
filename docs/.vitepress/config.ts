@@ -1,23 +1,45 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: "江畔晚吟时的博客",  // 浏览器标签页标题
-  description: "分享嵌入式开发以及python学习过程",  // SEO 描述
-  themeConfig: {
-    // 导航栏配置
-    nav: [
-      { text: '首页', link: '/' },
-      { text: '文章', link: '/posts/' },  // 链接到文章列表页
-      { text: '关于', link: '/about.md' }  // 后续可新建 about.md 作为关于页
-    ],
-    // 侧边栏配置（文章页生效）
-    sidebar: [
-      {
-        text: '我的文章',
-        items: [
-          { text: '第一篇技术笔记', link: '/posts/hello-world.md' }
+
+    appearance: true,   // 允许用户切换暗色模式
+
+    themeConfig: {
+        siteTitle: "江晚的博客",
+        // 侧边栏配置（文章页生效）
+        sidebar: [
+            // ========== 技术实践 ==========
+        {
+            text: '技术实践',
+            collapsible: true,
+            items: [
+            // 需先在 posts/project 目录创建对应 .md 文件
+            { text: '第一篇技术笔记', link: '/posts/project/helloworld.md' },
+            { text: 'C51 音乐播放器', link: '/posts/project/C51音乐播放器.md'},
+            { text: 'C51 俄罗斯方块', link: '/posts/project/C51俄罗斯方块.md'}
+            ]
+        },
+
+            // ========== 生活随笔 ==========
+        {
+            text: '生活随笔',      // 分组标题
+            collapsible: true,    
+            items: [
+            // 需先在 posts/essay 目录创建对应 .md 文件
+            { text: '猫说', link: '/posts/essay/catSaid.md' },
+            { text: '军训随笔', link: '/posts/essay/militaryTraining.md' }
+            ]
+        },
+            // ========== 短篇小说（新增分类） ==========
+        {
+            text: '短篇小说',      // 分组标题
+            collapsible: true,    
+            items: [
+            // 需先在 posts/novel 目录创建对应 .md 文件
+            { text: '余响', link: '/posts/novel/echo.md' },
+            { text: '未命名故事', link: '/posts/novel/story.md' }
+            ]
+        }
         ]
-      }
-    ]
-  }
+    }
 })

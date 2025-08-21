@@ -1,0 +1,116 @@
+/* 侧边栏分组间距 & 分隔线 
+   目标元素：<div class="group">（分组容器）
+*/
+.VPSidebar .group {
+  margin-bottom: 16px !important;   /* 分组之间的间距 */
+  padding-bottom: 8px !important;   /* 分组内边距 */
+}
+.VPSidebar .group:not(:last-child) {
+  border-bottom: 1px solid #eee !important; /* 灰色分隔线 */
+  margin-bottom: 16px !important;
+}
+/* 隐藏默认分组顶边框 */
+.VPSidebar .group + .group {
+  border-top: none !important;
+}
+
+/* 折叠箭头样式 
+   目标元素：<div class="action">（折叠箭头容器）
+*/
+.VPSidebar .action {
+  color: #666 !important;          /* 箭头颜色（深灰色） */
+  font-size: 14px !important;      /* 箭头大小 */
+  margin-right: -10px !important;    /* 和标题的间距 */
+}
+
+/* 子项缩进 
+   目标元素：<div class="items"> 
+*/
+.VPSidebar .items {
+  padding-left: 16px !important;   /* 子项向右缩进 */
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+.hero-img {
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.hero-desc {
+  flex: 1;
+}
+.button-group {
+  margin-top: 1rem;
+}
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--accent-color);
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: #c0392b; /* 深色 hover 效果 */
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.card {
+  background: var(--bg-light);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.card:hover {
+  transform: translateY(-3px); /* 轻微上浮动画 */
+}
+.card-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--accent-color);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/*暗黑模式下的样式*/
+html.dark {
+  --main-color: #bdc3c7;
+  --text-color: #ecf0f1;
+  --bg-light: #34495e;
+  --border-color: #555;
+}
+html.dark .card {
+  background: #2c3e50;
+}
+
+.about-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.avatar {
+  width: 150px;
+  border-radius: 50%;
+}
+.social-links {
+  margin-top: 1rem;
+}
+.social-icon {
+  margin-right: 10px;
+  color: var(--accent-color);
+  text-decoration: none;
+}
