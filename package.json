@@ -1,0 +1,43 @@
+{
+  "name": "vitepress-project",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
+  },
+  "devDependencies": {
+    "unplugin-icons": "^22.2.0",
+    "vitepress": "1.0.0-alpha.28",
+    "vue": "3.2.44"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
+  },
+  "dependencies": {
+    "@iconify-json/carbon": "^1.2.13",
+    "@iconify-json/mdi": "^1.2.3"
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanwan-yueyue/wanwan-yueyue-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanwan-yueyue/wanwan-yueyue-blog/issues"
+  },
+  "homepage": "https://github.com/wanwan-yueyue/wanwan-yueyue-blog#readme"
+}
