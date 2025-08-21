@@ -22,5 +22,22 @@
   "dependencies": {
     "@iconify-json/carbon": "^1.2.13",
     "@iconify-json/mdi": "^1.2.3"
-  }
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanwan-yueyue/wanwan-yueyue-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanwan-yueyue/wanwan-yueyue-blog/issues"
+  },
+  "homepage": "https://github.com/wanwan-yueyue/wanwan-yueyue-blog#readme"
 }
