@@ -1,116 +1,225 @@
-/* 侧边栏分组间距 & 分隔线 
-   目标元素：<div class="group">（分组容器）
-*/
+/* 
+ * 侧边栏样式优化
+ * 目标：调整分组间距和视觉层次，增强可读性
+ */
+
+/* 侧边栏分组容器样式 */
 .VPSidebar .group {
-  margin-bottom: 16px !important;   /* 分组之间的间距 */
-  padding-bottom: 8px !important;   /* 分组内边距 */
+  margin-bottom: 16px !important;   /* 分组之间的底部间距 */
+  padding-bottom: 8px !important;   /* 分组内部的底部内边距，用于分隔内容与边框 */
 }
+
+/* 为除最后一个分组外的所有分组添加底部边框 */
 .VPSidebar .group:not(:last-child) {
-  border-bottom: 1px solid #eee !important; /* 灰色分隔线 */
-  margin-bottom: 16px !important;
+  border-bottom: 1px solid #eee !important; /* 浅灰色分隔线，区分不同分组 */
+  margin-bottom: 16px !important;           /* 增加带边框分组的底部间距，增强层次感 */
 }
-/* 隐藏默认分组顶边框 */
+
+/* 隐藏分组之间的默认顶边框（避免重复边框） */
 .VPSidebar .group + .group {
   border-top: none !important;
 }
 
-/* 折叠箭头样式 
-   目标元素：<div class="action">（折叠箭头容器）
-*/
+/* 
+ * 折叠箭头样式
+ * 目标：统一箭头视觉风格，与整体设计协调
+ */
 .VPSidebar .action {
-  color: #666 !important;          /* 箭头颜色（深灰色） */
-  font-size: 14px !important;      /* 箭头大小 */
-  margin-right: -10px !important;    /* 和标题的间距 */
+  color: #666 !important;          /* 箭头颜色设为深灰色，避免过于醒目 */
+  font-size: 14px !important;      /* 缩小箭头尺寸，保持视觉次要地位 */
+  margin-right: -10px !important;  /* 调整与标题的间距，优化排版紧凑度 */
 }
 
-/* 子项缩进 
-   目标元素：<div class="items"> 
-*/
+/* 
+ * 侧边栏子项缩进
+ * 目标：通过缩进建立清晰的层级关系
+ */
 .VPSidebar .items {
-  padding-left: 16px !important;   /* 子项向右缩进 */
+  padding-left: 16px !important;   /* 子项向右缩进，明确与父项的层级关系 */
 }
 
+/* 
+ * 首页封面区域样式
+ * 目标：创建视觉焦点，突出博客主题
+ */
 .hero-section {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem 0;
+  display: flex;                  /* 使用flex布局，实现图文并排 */
+  align-items: center;            /* 垂直方向居中对齐 */
+  gap: 2rem;                      /* 图片与文字之间的间距 */
+  padding: 2rem 0;                /* 上下内边距，增加区域高度 */
 }
+
 .hero-img {
-  width: 300px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 300px;                   /* 固定图片宽度 */
+  border-radius: 8px;             /* 圆角处理，柔和视觉效果 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 轻微阴影，增强立体感 */
 }
+
 .hero-desc {
-  flex: 1;
+  flex: 1;                        /* 文字区域占剩余空间，实现自适应宽度 */
 }
+
+/* 
+ * 按钮组样式
+ * 目标：创建统一的交互按钮风格
+ */
 .button-group {
-  margin-top: 1rem;
+  margin-top: 1rem;               /* 与上方内容保持距离 */
 }
+
 .btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background: var(--accent-color);
-  color: white;
-  border-radius: 4px;
-  text-decoration: none;
-  margin-right: 10px;
-  transition: background 0.3s;
+  display: inline-block;          /* 使按钮能设置宽高和内外边距 */
+  padding: 8px 16px;              /* 按钮内边距，保证点击区域大小 */
+  background: var(--accent-color); /* 使用主题强调色作为背景 */
+  color: white;                   /* 文字白色，与背景形成对比 */
+  border-radius: 4px;             /* 圆角处理 */
+  text-decoration: none;          /* 去除默认链接下划线 */
+  margin-right: 10px;             /* 按钮之间的右侧间距 */
+  transition: background 0.3s;    /* 背景色变化的过渡动画，提升交互体验 */
 }
+
 .btn:hover {
-  background: #c0392b; /* 深色 hover 效果 */
+  background: #c0392b; /* 鼠标悬停时加深背景色，提供视觉反馈 */
 }
 
+/* 
+ * 文章卡片列表样式
+ * 目标：创建整齐有序的内容展示布局，保持两列设计
+ */
 .card-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  display: grid;                       /* 使用网格布局 */
+  grid-template-columns: repeat(2, 1fr); /* 强制两列布局，左右等分宽度 */
+  gap: 1.5rem;                         /* 卡片之间的间距 */
+  margin-top: 2rem;                    /* 与上方内容的距离 */
+  padding: 0 1rem;                     /* 左右内边距，避免边缘贴紧屏幕 */
 }
+
 .card {
-  background: var(--bg-light);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  background: var(--bg-light);         /* 使用主题浅色背景 */
+  padding: 1.5rem;                     /* 卡片内边距，保证内容呼吸空间 */
+  border-radius: 8px;                  /* 圆角处理 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 轻微阴影，增强层次感 */
+  transition: transform 0.3s;          /* 变换动画，用于悬停效果 */
 }
+
 .card:hover {
-  transform: translateY(-3px); /* 轻微上浮动画 */
+  transform: translateY(-3px); /* 鼠标悬停时轻微上浮，提供交互反馈 */
 }
+
 .card-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--accent-color);
-  font-weight: bold;
-  text-decoration: none;
+  display: inline-block;               /* 使链接能设置margin-top */
+  margin-top: 1rem;                    /* 与上方内容保持距离 */
+  color: var(--accent-color);          /* 使用主题强调色，突出可点击性 */
+  font-weight: bold;                   /* 加粗文字，增强视觉权重 */
+  text-decoration: none;               /* 去除默认链接下划线 */
 }
 
-/*暗黑模式下的样式*/
+/* 
+ * 暗黑模式样式适配
+ * 目标：在暗黑模式下保持良好的可读性和视觉体验
+ */
 html.dark {
-  --main-color: #bdc3c7;
-  --text-color: #ecf0f1;
-  --bg-light: #34495e;
-  --border-color: #555;
-}
-html.dark .card {
-  background: #2c3e50;
+  --main-color: #bdc3c7;    /* 主色调设为浅灰色，适应暗黑背景 */
+  --text-color: #ecf0f1;    /* 文字色设为更亮的灰色，提升可读性 */
+  --bg-light: #34495e;      /* 浅色背景设为深蓝灰色 */
+  --border-color: #555;     /* 边框色设为中灰色 */
 }
 
+html.dark .card {
+  background: #2c3e50;      /* 暗黑模式下卡片背景设为更深的蓝色，增强层次感 */
+}
+
+/* 
+ * 关于页面样式
+ * 目标：创建清晰的个人信息展示布局
+ */
 .about-section {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  display: flex;            /* 使用flex布局，实现头像与文字并排 */
+  align-items: center;      /* 垂直方向居中对齐 */
+  gap: 2rem;                /* 头像与文字之间的间距 */
+  margin-bottom: 2rem;      /* 与下方内容的距离 */
 }
+
 .avatar {
-  width: 150px;
-  border-radius: 50%;
+  width: 150px;             /* 固定头像宽度 */
+  border-radius: 50%;       /* 圆形头像效果 */
 }
+
 .social-links {
-  margin-top: 1rem;
+  margin-top: 1rem;         /* 与上方内容的距离 */
 }
+
 .social-icon {
-  margin-right: 10px;
-  color: var(--accent-color);
-  text-decoration: none;
+  margin-right: 10px;       /* 社交图标之间的间距 */
+  color: var(--accent-color); /* 使用主题强调色 */
+  text-decoration: none;    /* 去除默认链接下划线 */
+}
+
+/* 
+ * 响应式适配：移动端（屏幕宽度 ≤ 768px）
+ * 目标：在小屏设备上保持良好的布局和可读性，维持两列卡片设计
+ */
+@media (max-width: 768px) {
+  /* 首页封面区域适配 */
+  .hero-section {
+    flex-direction: column; /* 移动端改为垂直布局，避免内容挤压 */
+    padding: 1rem 0;        /* 减少上下内边距，适应小屏高度 */
+    gap: 1rem;              /* 减小元素间距，节省空间 */
+  }
+  
+  .hero-img {
+    width: 100%;            /* 图片占满屏幕宽度 */
+    max-width: 300px;       /* 限制最大宽度，避免在大屏手机上过大 */
+  }
+  
+  .hero-desc {
+    width: 100%;            /* 文字区域占满宽度 */
+    text-align: center;     /* 文字居中，提升移动端阅读体验 */
+  }
+
+  /* 按钮组适配 */
+  .button-group {
+    display: flex;          /* 使用flex布局 */
+    justify-content: center;/* 按钮居中对齐 */
+    flex-wrap: wrap;        /* 超出时自动换行，避免溢出 */
+    gap: 0.5rem;            /* 减小按钮间距 */
+  }
+  
+  .btn {
+    margin-right: 0;        /* 移除右侧margin，使用gap控制间距 */
+    padding: 6px 12px;      /* 减小按钮内边距，适应小屏 */
+    font-size: 14px;        /* 减小按钮文字 */
+  }
+
+  /* 卡片列表适配：保持两列，调整尺寸 */
+  .card-list {
+    grid-template-columns: repeat(2, 1fr); /* 继续保持两列布局 */
+    gap: 0.8rem;                          /* 减小卡片间距，适应小屏 */
+    padding: 0 0.5rem;                    /* 减小左右内边距 */
+  }
+  
+  .card {
+    padding: 0.8rem; /* 减小卡片内边距，让两列卡片能在窄屏中适配 */
+  }
+
+  /* 关于页面适配 */
+  .about-section {
+    flex-direction: column; /* 垂直布局，避免内容挤压 */
+    text-align: center;     /* 文字居中 */
+    padding: 0 0.5rem;      /* 增加左右内边距，避免内容贴边 */
+  }
+  
+  .avatar {
+    margin-bottom: 1rem;    /* 头像下方留白，分隔头像与文字 */
+  }
+
+  /* 侧边栏适配：紧凑布局 */
+  .VPSidebar .group {
+    margin-bottom: 10px !important;  /* 减小分组间距 */
+    padding-bottom: 5px !important;  /* 减小分组内边距 */
+  }
+  
+  .VPSidebar .items {
+    padding-left: 10px !important;   /* 减小子项缩进，节省空间 */
+  }
 }
