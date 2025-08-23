@@ -1,8 +1,14 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
-export default defineConfig({
-
+export default withMermaid(defineConfig({
     appearance: true,   // 允许用户切换暗色模式
+
+    // Mermaid 配置（可选）
+    mermaid: {
+        // 可以在这里配置 Mermaid 的全局选项
+        theme: 'default',
+    },
 
     themeConfig: {
         siteTitle: "江晚的博客",
@@ -42,4 +48,4 @@ export default defineConfig({
         }
         ]
     }
-})
+}))

@@ -69,17 +69,21 @@
 
 .btn {
   display: inline-block;          /* 使按钮能设置宽高和内外边距 */
-  padding: 8px 16px;              /* 按钮内边距，保证点击区域大小 */
+  padding: 7px 15px;              /* 按钮内边距，保证点击区域大小 */
   background: var(--accent-color); /* 使用主题强调色作为背景 */
   color: white;                   /* 文字白色，与背景形成对比 */
   border-radius: 4px;             /* 圆角处理 */
   text-decoration: none;          /* 去除默认链接下划线 */
   margin-right: 10px;             /* 按钮之间的右侧间距 */
   transition: background 0.3s;    /* 背景色变化的过渡动画，提升交互体验 */
+  border: 2px solid var(--accent-color);    /* 边框，颜色与背景一致*/
 }
 
 .btn:hover {
   background: #c0392b; /* 鼠标悬停时加深背景色，提供视觉反馈 */
+  border-color: #c0392b;  /* 边框色同步加深 */
+  transform: translateY(-3px);  /* 轻微上浮 */
+  transition: transform 0.3s;   /* 变换动画，用于悬停效果 */
 }
 
 /* 
