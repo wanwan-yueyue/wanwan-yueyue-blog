@@ -1,5 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import './style.css' 
+import './mathjax3.css'
 import NovelTooltip from '../components/NovelTooltip.vue' 
 
 export default {
