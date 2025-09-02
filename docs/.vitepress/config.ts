@@ -6,7 +6,6 @@ export default withMermaid(defineConfig({
 
     // Mermaid 配置（可选）
     mermaid: {
-        // 可以在这里配置 Mermaid 的全局选项
         theme: 'default',
     },
 
@@ -33,6 +32,9 @@ export default withMermaid(defineConfig({
             items: [
             // 需先在 posts/essay 目录创建对应 .md 文件
             { text: '猫说', link: '/posts/essay/catSaid.md' },
+            { text: '七夕随笔（其一）', link: '/posts/essay/ChineseValentine_Day(first)'},
+            { text: 'Leave or wait', link: '/posts/essay/Leave_or_wait.md'},
+            { text: '杂篇六则', link: '/posts/essay/miscellaneous_notes.md'},
             { text: '军训随笔', link: '/posts/essay/militaryTraining.md' }
             ]
         },

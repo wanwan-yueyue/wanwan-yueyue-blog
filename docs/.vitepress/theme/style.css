@@ -75,7 +75,7 @@
   border-radius: 4px;             /* 圆角处理 */
   text-decoration: none;          /* 去除默认链接下划线 */
   margin-right: 10px;             /* 按钮之间的右侧间距 */
-  transition: background 0.3s;    /* 背景色变化的过渡动画，提升交互体验 */
+  transition: background 0.3s, transform 0.3s, border-color 0.3s; /* 合并过渡动画 */
   border: 2px solid var(--accent-color);    /* 边框，颜色与背景一致*/
 }
 
@@ -83,7 +83,6 @@
   background: #c0392b; /* 鼠标悬停时加深背景色，提供视觉反馈 */
   border-color: #c0392b;  /* 边框色同步加深 */
   transform: translateY(-3px);  /* 轻微上浮 */
-  transition: transform 0.3s;   /* 变换动画，用于悬停效果 */
 }
 
 /* 
@@ -124,13 +123,19 @@
  */
 html.dark {
   --main-color: #bdc3c7;    /* 主色调设为浅灰色，适应暗黑背景 */
-  --text-color: #ecf0f1;    /* 文字色设为更亮的灰色，提升可读性 */
+  --text-color: #f5f5f5;    /* 文字色调亮（如 #f5f5f5），确保暗色下可读性 */
   --bg-light: #34495e;      /* 浅色背景设为深蓝灰色 */
   --border-color: #555;     /* 边框色设为中灰色 */
+  --accent-color: #64b5f6;  /* 暗色下更醒目的强调色（亮蓝色） */
 }
 
 html.dark .card {
   background: #2c3e50;      /* 暗黑模式下卡片背景设为更深的蓝色，增强层次感 */
+}
+
+/* 文章内容容器：确保暗色下文字颜色明亮 */
+html.dark .post-content {
+  color: var(--text-color);
 }
 
 /* 
@@ -157,6 +162,66 @@ html.dark .card {
   margin-right: 10px;       /* 社交图标之间的间距 */
   color: var(--accent-color); /* 使用主题强调色 */
   text-decoration: none;    /* 去除默认链接下划线 */
+}
+
+/* 
+ * 原生 Tooltip 样式（适配明暗模式）
+ */
+.novel-tooltip {
+  display: inline-block;
+  position: relative;
+  border-bottom: 1px dotted #4a90e2; /* 浅色模式下划线 */
+  cursor: help;
+  color: inherit; /* 继承容器文字颜色 */
+}
+
+.novel-tooltip .tooltip-text {
+  visibility: hidden;
+  width: 250px;
+  background-color: #333; /* 浅色模式提示框背景 */
+  color: #fff;            /* 浅色模式提示框文字 */
+  text-align: left;
+  border-radius: 6px;
+  padding: 0.8rem;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.9rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.novel-tooltip .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent; /* 浅色模式箭头 */
+}
+
+.novel-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 暗黑模式下 Tooltip 适配 */
+html.dark .novel-tooltip {
+  border-bottom-color: var(--accent-color); /* 暗色模式下划线用强调色 */
+}
+
+html.dark .novel-tooltip .tooltip-text {
+  background-color: #2d2d2d; /* 暗色模式提示框背景（更深灰） */
+  color: var(--text-color);  /* 继承暗色文字色 */
+}
+
+html.dark .novel-tooltip .tooltip-text::after {
+  border-color: #2d2d2d transparent transparent transparent; /* 暗色模式箭头 */
 }
 
 /* 
