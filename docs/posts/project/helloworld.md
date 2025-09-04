@@ -11,4 +11,29 @@ date: 2025-08-20  # 发布日期
 2. 支持在 Markdown 中嵌入 Vue 组件，方便做动态效果；
 3. 部署简单，直接推送到 GitHub 即可。
 
+
+代码组功能测试
+::: code-group
+```js [JavaScript]
+// 打印 Hello World
+console.log('Hello World')
+```
+
+
+```python [python]
+# 打印 Hello World
+print("Hello World")
+```
+
+```c [c]
+// 打印 Hello World
+#include <stdio.h>
+int main() {
+    printf("Hello World\n");
+    return 0;
+}
+```
+
+:::
+
 后续计划研究如何添加 3D 旋转效果 🌀

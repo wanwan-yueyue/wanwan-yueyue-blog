@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
-import mathjax3 from 'markdown-it-mathjax3'
+import  mathjax3 from 'markdown-it-mathjax3'
 
 // 声明 MathJax 生成的自定义标签（避免 Vue 因未知标签报错）
 const mathCustomElements = [
@@ -96,17 +96,34 @@ const mathCustomElements = [
 export default withMermaid(defineConfig({
   appearance: true, // 允许用户切换暗色模式
 
-  // Mermaid 配置（可选）
+  // Mermaid 配置
   mermaid: {
     theme: 'default',
   },
 
   // Markdown 配置：启用 LaTeX 解析（通过 markdown-it-mathjax3）
   markdown: {
+    lineNumbers: false,
     config: (md) => {
-      md.use(mathjax3); // 注册 MathJax 插件，解析 $...$ / $$...$$ 包裹的 LaTeX
+      // 配置 mathjax3，解决与代码组的冲突
+      md.use(mathjax3, {
+        // 保留 $...$（行内）/ $$...$$（块级）公式语法，避免修改现有文档
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          processEscapes: true, // 允许用 \$ 表示纯文本“$”（避免误解析）
+        },
+        // 核心：忽略 VitePress 代码组/代码块，不解析其中的公式语法
+        options: {
+          // 忽略代码组、代码块相关的 HTML 类（VitePress 内置类名）
+          ignoreHtmlClass: 'vitepress-code-group, vitepress-code-block, language-*, md-fence',
+          // 跳过 <pre> <script> 等标签内的内容（进一步避免代码块误解析）
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        },
+      });
     }
   },
+
 
   // Vue 配置：声明 MathJax 标签为「自定义元素」
   vue: {
