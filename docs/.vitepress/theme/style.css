@@ -1,23 +1,35 @@
 /* 
+ * 全局基础变量定义（新增：统一按钮与卡片的颜色逻辑，放在最顶部确保全局可调用）
+ */
+:root {
+  /* 原有主题基础色（若你之前已定义，可根据实际情况调整数值，保持一致即可） */
+  --main-color: #333;          /* 浅色模式主文字色 */
+  --text-color: #f5f5f5;       /* 暗黑模式文字色 */
+  --bg-light: #f8f9fa;         /* 浅色模式卡片/按钮背景色 */
+  --border-color: #eee;        /* 浅色模式边框色 */
+  --accent-color: #3eaf7c;     /* 主题强调色（按钮hover文字/社交链接等） */
+  
+  /* 新增：按钮hover状态色（与卡片hover逻辑匹配，避免硬编码） */
+  --bg-hover: #f1f3f5;         /* 浅色模式：按钮/卡片hover背景（比bg-light稍深） */
+  --border-hover: #ddd;        /* 浅色模式：按钮hover边框（比border-color稍深） */
+}
+
+/* 
  * 侧边栏样式优化
  * 目标：调整分组间距和视觉层次，增强可读性
  */
-
-/* 侧边栏分组容器样式 */
 .VPSidebar .group {
   margin-bottom: 16px !important;   /* 分组之间的底部间距 */
   padding-bottom: 8px !important;   /* 分组内部的底部内边距，用于分隔内容与边框 */
 }
 
-/* 为除最后一个分组外的所有分组添加底部边框 */
 .VPSidebar .group:not(:last-child) {
   border-bottom: 1px solid #eee !important; /* 浅灰色分隔线，区分不同分组 */
   margin-bottom: 16px !important;           /* 增加带边框分组的底部间距，增强层次感 */
 }
 
-/* 隐藏分组之间的默认顶边框（避免重复边框） */
 .VPSidebar .group + .group {
-  border-top: none !important;
+  border-top: none !important; /* 隐藏分组之间的默认顶边框（避免重复边框） */
 }
 
 /* 
@@ -60,29 +72,41 @@
 }
 
 /* 
- * 按钮组样式
- * 目标：创建统一的交互按钮风格
+ * 按钮组样式（已优化：与卡片风格完全统一）
+ * 核心：复用卡片的背景、圆角、阴影、交互逻辑，消除视觉割裂
  */
 .button-group {
-  margin-top: 1rem;               /* 与上方内容保持距离 */
+  margin-top: 1rem;               /* 与上方内容保持距离（和卡片与上方间距一致） */
+  display: flex;                  /* 适配移动端居中+换行，后续响应式复用 */
+  gap: 1rem;                      /* 按钮间距，替代原margin-right（更灵活） */
 }
 
 .btn {
-  display: inline-block;          /* 使按钮能设置宽高和内外边距 */
-  padding: 7px 15px;              /* 按钮内边距，保证点击区域大小 */
-  background: var(--accent-color); /* 使用主题强调色作为背景 */
-  color: white;                   /* 文字白色，与背景形成对比 */
-  border-radius: 4px;             /* 圆角处理 */
-  text-decoration: none;          /* 去除默认链接下划线 */
-  margin-right: 10px;             /* 按钮之间的右侧间距 */
-  transition: background 0.3s, transform 0.3s, border-color 0.3s; /* 合并过渡动画 */
-  border: 2px solid var(--accent-color);    /* 边框，颜色与背景一致*/
+  /* 1. 基础样式：对齐卡片的背景、圆角、阴影 */
+  display: inline-block;
+  padding: 0.8rem 1.5rem;         /* 内边距：和卡片内边距（1.5rem）比例协调 */
+  background: var(--bg-light);     /* 背景色：直接复用卡片的浅色背景 */
+  color: var(--main-color);        /* 文字色：继承主题主文字色（和卡片文字一致） */
+  border-radius: 8px;             /* 圆角：和卡片圆角（8px）完全统一 */
+  text-decoration: none;          /* 去除下划线（保持链接本质） */
+  border: 1px solid var(--border-color); /* 边框：加细边框（卡片隐含的边界感） */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 阴影：完全复用卡片的轻微阴影 */
+  
+  /* 2. 交互过渡：和卡片的动画逻辑统一 */
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  
+  /* 3. 文字风格：和卡片内文字协调 */
+  font-size: 1rem;                /* 文字大小：和卡片正文一致 */
+  font-weight: 500;               /* 文字权重：比卡片正文稍粗（突出按钮属性） */
 }
 
+/* 按钮悬停：对齐卡片的交互反馈 */
 .btn:hover {
-  background: #c0392b; /* 鼠标悬停时加深背景色，提供视觉反馈 */
-  border-color: #c0392b;  /* 边框色同步加深 */
-  transform: translateY(-3px);  /* 轻微上浮 */
+  transform: translateY(-3px);    /* 上浮效果：和卡片悬停上浮完全一致 */
+  background: var(--bg-hover);     /* 背景加深：呼应卡片hover的层次感 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* 阴影加重：比卡片悬停稍明显（突出交互） */
+  border-color: var(--border-hover); /* 边框加深：呼应背景变化，增强边界感 */
+  color: var(--accent-color);      /* 文字加亮：用主题强调色（保留按钮可点击提示） */
 }
 
 /* 
@@ -98,15 +122,16 @@
 }
 
 .card {
-  background: var(--bg-light);         /* 使用主题浅色背景 */
+  background: var(--bg-light);         /* 使用主题浅色背景（与按钮统一） */
   padding: 1.5rem;                     /* 卡片内边距，保证内容呼吸空间 */
-  border-radius: 8px;                  /* 圆角处理 */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 轻微阴影，增强层次感 */
-  transition: transform 0.3s;          /* 变换动画，用于悬停效果 */
+  border-radius: 8px;                  /* 圆角处理（与按钮统一） */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 轻微阴影（与按钮统一） */
+  transition: transform 0.3s, box-shadow 0.3s; /* 变换动画（新增阴影过渡，与按钮同步） */
 }
 
 .card:hover {
-  transform: translateY(-3px); /* 鼠标悬停时轻微上浮，提供交互反馈 */
+  transform: translateY(-3px); /* 鼠标悬停时轻微上浮（与按钮交互一致） */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* 阴影加重（与按钮hover阴影统一） */
 }
 
 .card-link {
@@ -119,23 +144,34 @@
 
 /* 
  * 暗黑模式样式适配
- * 目标：在暗黑模式下保持良好的可读性和视觉体验
+ * 目标：在暗黑模式下保持良好的可读性和视觉体验（已同步按钮样式）
  */
 html.dark {
   --main-color: #bdc3c7;    /* 主色调设为浅灰色，适应暗黑背景 */
-  --text-color: #f5f5f5;    /* 文字色调亮（如 #f5f5f5），确保暗色下可读性 */
-  --bg-light: #34495e;      /* 浅色背景设为深蓝灰色 */
+  --text-color: #f5f5f5;    /* 文字色调亮，确保暗色下可读性 */
+  --bg-light: #34495e;      /* 浅色背景设为深蓝灰色（卡片背景） */
   --border-color: #555;     /* 边框色设为中灰色 */
   --accent-color: #64b5f6;  /* 暗色下更醒目的强调色（亮蓝色） */
+  
+  /* 新增：暗黑模式按钮/卡片hover色（与浅色模式逻辑一致） */
+  --bg-hover: #395069;      /* 暗黑模式：按钮/卡片hover背景（比bg-light稍深） */
+  --border-hover: #4a6990;  /* 暗黑模式：按钮hover边框（比border-color稍深） */
 }
 
 html.dark .card {
-  background: #2c3e50;      /* 暗黑模式下卡片背景设为更深的蓝色，增强层次感 */
+  background: #2c3e50;      /* 暗黑模式下卡片背景（更深的蓝色，增强层次感） */
 }
 
 /* 文章内容容器：确保暗色下文字颜色明亮 */
 html.dark .post-content {
   color: var(--text-color);
+}
+
+/* 暗黑模式：按钮样式同步卡片暗黑适配 */
+html.dark .btn {
+  background: #2c3e50;            /* 背景色：完全复用卡片的暗黑背景 */
+  color: var(--text-color);        /* 文字色：复用卡片的暗黑文字色 */
+  border-color: var(--border-color); /* 边框色：复用暗黑模式的边框色 */
 }
 
 /* 
@@ -226,7 +262,7 @@ html.dark .novel-tooltip .tooltip-text::after {
 
 /* 
  * 响应式适配：移动端（屏幕宽度 ≤ 768px）
- * 目标：在小屏设备上保持良好的布局和可读性，维持两列卡片设计
+ * 目标：在小屏设备上保持良好的布局和可读性（已同步按钮与卡片适配）
  */
 @media (max-width: 768px) {
   /* 首页封面区域适配 */
@@ -246,18 +282,17 @@ html.dark .novel-tooltip .tooltip-text::after {
     text-align: center;     /* 文字居中，提升移动端阅读体验 */
   }
 
-  /* 按钮组适配 */
+  /* 按钮组适配（与卡片移动端样式协调） */
   .button-group {
-    display: flex;          /* 使用flex布局 */
     justify-content: center;/* 按钮居中对齐 */
     flex-wrap: wrap;        /* 超出时自动换行，避免溢出 */
-    gap: 0.5rem;            /* 减小按钮间距 */
+    gap: 0.5rem;            /* 减小按钮间距，适应小屏 */
   }
   
   .btn {
-    margin-right: 0;        /* 移除右侧margin，使用gap控制间距 */
-    padding: 6px 12px;      /* 减小按钮内边距，适应小屏 */
-    font-size: 14px;        /* 减小按钮文字 */
+    padding: 0.6rem 1.2rem; /* 内边距：和卡片移动端内边距（0.8rem）比例协调 */
+    font-size: 0.9rem;      /* 文字缩小：和卡片移动端文字大小一致 */
+    margin-right: 0;        /* 移除右侧margin，用gap控制间距 */
   }
 
   /* 卡片列表适配：保持两列，调整尺寸 */
