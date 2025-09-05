@@ -1,0 +1,166 @@
+/* 小说内容基础样式 */
+.novel-container {
+    font-family: "Microsoft Yahei", sans-serif;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.novel-container p {
+    margin-bottom: 1.5rem;
+}
+
+/* 原生Tooltip样式 */
+.novel-tooltip {
+    display: inline-block;
+    position: relative;
+    border-bottom: 1px dotted #4a90e2;
+    cursor: help;
+    color: #2c3e50;
+}
+.novel-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 0.8rem;
+    position: absolute;
+    z-index: 100;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+.novel-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+.novel-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 信件容器样式*/
+.letter-container {
+    position: relative;
+    z-index: 0; /* 容器层级低于按钮 */
+    background-image: url('/images/paper-texture.jpg'); /* 纸张纹理图 */
+    background-size: cover; /* 纹理铺满容器 */
+    background-color: #f8f5e6; /* 备用色（纹理加载失败时显示） */
+    border: 1px solid #e8dcbb; /* 浅米色边框，模拟纸张边缘 */
+    padding: 2rem;
+    margin: 30px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    min-height: 200px;
+}
+
+.letter-container:before {
+    content: none;
+}
+
+/* 按钮样式 */
+.reveal-btn {
+    position: relative;
+    z-index: 10; /* 按钮层级高于容器，避免被纹理覆盖 */
+    background-image: none !important; /* 彻底移除纹理 */
+    background-color: #8c6d46; /* 木质棕，贴合手写纸风格 */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Microsoft Yahei", sans-serif; /* 按钮用清晰字体，对比手写体 */
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto;
+}
+.reveal-btn:hover {
+    background-color: #6b5435; /*  hover加深，增强交互感 */
+}
+
+/* 信件内容样式 */
+.letter-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #5a4a3f; /* 深棕色，模拟墨水色 */
+    font-style: italic;
+    min-height: 150px;
+    position: relative;
+    z-index: 1; /* 内容层级高于容器背景 */
+}
+/* 信件行： */
+.letter-line {
+    font-family: "华文行楷", "STXingkai", "Brush Script MT", cursive; /* 中/英文手写体备选 */
+    font-size: 1.2rem; /* 手写体稍大，更显飘逸 */
+    margin-bottom: 15px;
+    display: block;
+    /* 初始隐藏状态（配合hidden类） */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+/* 信件行显示状态 */
+.letter-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 落款样式 */
+.letter-signature {
+    font-family: "华文行楷", "STXingkai", "Brush Script MT", cursive; /* 同信件行手写体 */
+    font-size: 1.4rem; /* 落款稍大，突出签名 */
+    text-align: right;
+    margin-top: 30px;
+    font-style: normal;
+    /* 初始隐藏状态 */
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+/* 落款显示状态 */
+.letter-signature.visible {
+    opacity: 1;
+}
+
+/* 光标动画 */
+.typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background-color: #8c6d46;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* 上下文段落样式 */
+.context {
+    color: #666;
+    font-style: italic;
+    border-left: 3px solid #e8dcbb;
+    padding-left: 15px;
+    margin: 20px 0;
+}
+
+/* 强制隐藏类 */
+.hidden {
+    opacity: 0 !important; /* !important 确保优先级，不被其他样式覆盖 */
+    transform: translateY(10px) !important;
+}

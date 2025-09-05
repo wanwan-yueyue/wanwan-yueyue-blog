@@ -1,9 +1,69 @@
 # 余响
 
-<!-- 引用样式：直接在 Markdown 开头用 <link> 引用，不用包在 <head> 里 -->
-<link rel="stylesheet" type="text/css" href="/scripts/letter-styles.css">
+<!-- 1. 样式部分：用<style>标签定义，放在HTML片段最前面 -->
+<style>
+  /* 小说内容基础样式 */
+  .novel-container {
+    font-family: "Microsoft Yahei", sans-serif;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
 
-<!-- 小说内容：纯HTML结构，嵌入原生Tooltip -->
+  .novel-container p {
+    margin-bottom: 1.5rem;
+  }
+
+  /* 原生Tooltip样式 */
+  .novel-tooltip {
+    display: inline-block;
+    position: relative;
+    border-bottom: 1px dotted #4a90e2;
+    cursor: help;
+    color: #2c3e50;
+  }
+
+  /* 提示框样式 */
+  .novel-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 0.8rem;
+    position: absolute;
+    z-index: 100;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+
+  /* 提示框小箭头 */
+  .novel-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+  }
+
+  /* 鼠标悬浮时显示提示框 */
+  .novel-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
+
+<!-- 2. 小说内容：纯HTML结构，嵌入原生Tooltip -->
 <div class="novel-container">
   <p>“沈野这人真的很过分。”</p>
 
@@ -46,17 +106,11 @@
 
   <p>老人偶尔会轻声哼唱几句古老的民谣，馆内的时光仿佛也随之缓慢流淌。林砚渐渐习惯了这里的静谧与温暖，甚至开始帮老人擦拭那些泛着微光的玻璃罐。每当夜幕降临，林砚擦到第三排架子时，总会对着一只极光罐子多停两秒。入秋的阳光斜斜切过罐身，里面的银蓝色光点像被冻住的星子，闪烁着淡淡的寒意。这是他来到馆里的第四个月，沈野离开的第七十八天。</p>
 
-  <p>这天整理前辈留下的樟木箱时，她指尖勾到个牛皮信封。信封边缘磨出毛边，收信人出空着，背面用铅笔写了个"砚"字，笔尖戳透了纸背，是沈野的字迹。里面只有一些信纸，墨水在"灵感"两个字上面洇染成墨团，字里行间里面裹着说不完化不开的疲惫：</p>
-        
-  <!-- 信件容器 -->
-  <div class="letter-container">
-      <div class="letter-content" id="letterContent">
-          <!-- 信件内容将通过JavaScript动态添加 -->
-      </div>
-      <button class="reveal-btn" id="revealBtn">展开信件</button>
-  </div>
-        
-  <p>林砚捏着信纸的指节泛白。沈野从不用"烦"这个字，他总说"画画哪有烦，只有画不出来的心急"；他更不会说极光是他"随口说的"，去年冬夜他紧紧攥着极光图册，指腹把"特罗姆瑟"这个地名摩挲到几乎透明、起了毛边，林砚记得当时他眼里的光点，以及那一句"要在极光下画上她最喜欢的晚樱"这句诺言。</p>
+  <p>这天整理前辈留下的樟木箱时，她指尖勾到个牛皮信封。信封边缘磨出毛边，收信人出空着，背面用铅笔写了个“砚”字，笔尖戳透了纸背，是沈野的字迹。里面只有一些信纸，墨水在“灵感”两个字上面洇染成墨团，字里行间里面裹着说不完化不开的疲惫：</p>
+
+  <p>“画室的光越来越暗了。你画樱花时总爱开着南窗，风灌进来把画纸吹的卷边，以前觉得是活气，现在只觉得烦躁。挪威的极光，或许只是我随口说的吧？谁会真的为了这团光跑那么远，疯了吗？我想换个地方画画，去找找灵感，不用等谁，也不用被谁等。”</p>
+
+  <p>林砚捏着信纸的指节泛白。沈野从不用“烦”这个字，他总说“画画哪有烦，只有画不出来的心急”；他更不会说极光是他“随口说的”，去年冬夜他紧紧攥着极光图册，指腹把“特罗姆瑟”这个地名摩挲到几乎透明、起了毛边，林砚记得当时他眼里的光点，以及那一句“要在极光下画上她最喜欢的晚樱”这句诺言。</p>
 
   <p>林砚深吸一口气，将信纸叠好塞进围裙口袋，指尖碰到某个硬角——是昨天整理沈野布包时，从夹层摸出的金属片。指甲盖大小，边缘已被锈蚀成褐色，背面刻着半朵樱花，像从什么东西上掰下来的。她当时没在意，此刻贴着信纸揣在怀里，竟觉出点凉意，像揣了块冰。</p>
 
@@ -133,111 +187,3 @@
 
 </div>
 
-<script type="text/javascript">
-// 使用MutationObserver确保DOM完全加载后再执行脚本（避免找不到元素）
-function initLetterScript() {
-  console.log('信件脚本开始执行');
-
-  // 1. 查找DOM元素（双重校验，避免报错）
-  const letterContent = document.getElementById('letterContent');
-  const revealBtn = document.getElementById('revealBtn');
-  if (!letterContent || !revealBtn) {
-    console.error('⚠️ 未找到信件容器或按钮！请检查id是否正确：');
-    console.log('letterContent:', letterContent);
-    console.log('revealBtn:', revealBtn);
-    return;
-  }
-  console.log('✅ 成功找到DOM元素，开始初始化信件');
-  
-  // 信件内容（保留原有文本）
-  const letterLines = [
-    "画室的光越来越暗了。",
-    "你画樱花时总爱开着南窗，风灌进来把画纸吹的卷边，",
-    "以前觉得是活气，现在只觉得烦躁。",
-    "挪威的极光，或许只是我随口说的吧？",
-    "谁会真的为了这团光跑那么远，疯了吗？",
-    "我想换个地方画画，去找找灵感，",
-    "不用等谁，也不用被谁等。"
-  ];
-
-  // 初始化信件（核心修改：给元素加hidden类，初始隐藏）
-  function initLetter() {
-    letterContent.innerHTML = ''; // 清空容器，避免重复渲染
-    
-    // 生成信件行：加letter-line + hidden类（初始隐藏）
-    letterLines.forEach(line => {
-      const lineEl = document.createElement('div');
-      lineEl.classList.add('letter-line', 'hidden'); // 关键：加hidden类
-      lineEl.textContent = line; // 纯文本渲染，避免XSS风险
-      letterContent.appendChild(lineEl);
-    });
-    
-    // 生成落款：加letter-signature + hidden类（初始隐藏）
-    const signature = document.createElement('div');
-    signature.classList.add('letter-signature', 'hidden'); // 关键：加hidden类
-    signature.textContent = "沈野";
-    letterContent.appendChild(signature);
-  }
-
-  // 逐行显示逻辑（核心修改：移除hidden类+加visible类）
-  function revealLetter() {
-    // 按钮状态锁定：禁用+改文字，防止重复点击
-    revealBtn.disabled = true;
-    revealBtn.textContent = '阅读中...';
-    
-    // 获取所有信件行和落款
-    const lines = document.querySelectorAll('.letter-line');
-    const signature = document.querySelector('.letter-signature');
-    let delay = 0; // 逐行延迟时间（毫秒）
-    
-    // 逐行显示：每2秒显示一行，最后一行后显示落款
-    lines.forEach((line, idx) => {
-      setTimeout(() => {
-        line.classList.remove('hidden'); // 移除隐藏类
-        line.classList.add('visible');  // 添加显示类（触发动画）
-        
-        // 最后一行显示后，延迟1秒显示落款
-        if (idx === lines.length - 1) {
-          setTimeout(() => {
-            signature.classList.remove('hidden'); // 落款移除隐藏
-            signature.classList.add('visible');  // 落款添加显示
-            revealBtn.textContent = '已阅读'; // 按钮状态更新
-          }, 1000);
-        }
-      }, delay);
-      
-      delay += 2000; // 每行间隔2秒，模拟手写阅读节奏
-    });
-  }
-
-  // 执行初始化 + 绑定按钮点击事件
-  initLetter();
-  revealBtn.addEventListener('click', revealLetter);
-  console.log('✅ 信件初始化完成，点击事件已绑定');
-}
-
-// MutationObserver：监听DOM变化，直到目标元素出现再执行脚本
-const observer = new MutationObserver(function(mutations, me) {
-  const letterContent = document.getElementById('letterContent');
-  const revealBtn = document.getElementById('revealBtn');
-  
-  // 元素存在则执行脚本，同时停止监听
-  if (letterContent && revealBtn) {
-    initLetterScript();
-    me.disconnect(); // 停止观察，避免资源浪费
-    return;
-  }
-});
-
-// 开始监听整个文档的DOM变化（子元素新增/删除、子树变化）
-observer.observe(document, {
-  childList: true,
-  subtree: true
-});
-
-// 超时保护：10秒后若仍未找到元素，停止监听（避免无限循环）
-setTimeout(() => {
-  observer.disconnect();
-  console.warn('⌛ 10秒后仍未找到信件元素，已停止监听');
-}, 10000);
-</script>

@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
-import  mathjax3 from 'markdown-it-mathjax3'
+import mathjax3 from 'markdown-it-mathjax3'
 
 // 声明 MathJax 生成的自定义标签（避免 Vue 因未知标签报错）
 const mathCustomElements = [
@@ -96,34 +96,19 @@ const mathCustomElements = [
 export default withMermaid(defineConfig({
   appearance: true, // 允许用户切换暗色模式
 
-  // Mermaid 配置
+  // Mermaid 配置（可选）
   mermaid: {
     theme: 'default',
   },
 
   // Markdown 配置：启用 LaTeX 解析（通过 markdown-it-mathjax3）
   markdown: {
-    lineNumbers: false,
+	html:true,
+    lineNumbers: true,
     config: (md) => {
-      // 配置 mathjax3，解决与代码组的冲突
-      md.use(mathjax3, {
-        // 保留 $...$（行内）/ $$...$$（块级）公式语法，避免修改现有文档
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$', '$$'], ['\\[', '\\]']],
-          processEscapes: true, // 允许用 \$ 表示纯文本“$”（避免误解析）
-        },
-        // 核心：忽略 VitePress 代码组/代码块，不解析其中的公式语法
-        options: {
-          // 忽略代码组、代码块相关的 HTML 类（VitePress 内置类名）
-          ignoreHtmlClass: 'vitepress-code-group, vitepress-code-block, language-*, md-fence',
-          // 跳过 <pre> <script> 等标签内的内容（进一步避免代码块误解析）
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-        },
-      });
+      md.use(mathjax3); // 注册 MathJax 插件，解析 $...$ / $$...$$ 包裹的 LaTeX
     }
   },
-
 
   // Vue 配置：声明 MathJax 标签为「自定义元素」
   vue: {
@@ -134,13 +119,31 @@ export default withMermaid(defineConfig({
     }
   },
 
+  // 添加静态资源处理
+  vite:{
+	build: {
+		assetsDir: 'assets',
+		rollupOptions:{
+			output:{
+				manualChunks:undefined,
+			},
+		},
+	},
+	server: {
+		fs: {
+			allow: ['..']
+		}
+	}
+  },
+
   themeConfig: {
     siteTitle: "江晚的博客",
-    sidebar: [
-      // ========== 技术实践 ==========
+    sidebar: {
+	
+		'/':[// ========== 技术实践 ==========
       {
         text: '技术实践',
-        collapsible: true,
+        collapsed: false,
         items: [
           { text: '第一篇技术笔记', link: '/posts/project/helloworld.md' },
           { text: 'C51 音乐播放器', link: '/posts/project/C51音乐播放器.md'},
@@ -150,7 +153,7 @@ export default withMermaid(defineConfig({
       // ========== 学科论文 ==========
       {
         text: '学科论文',
-        collapsible: true,    
+        collapsed: false,    
         items: [
           { text: '拉格朗日方程在机械臂中的数学建模', link: '/posts/thesis/Derivations of Lagrange Equation.md' }
         ]
@@ -158,7 +161,7 @@ export default withMermaid(defineConfig({
       // ========== 生活随笔 ==========
       {
         text: '生活随笔',
-        collapsible: true,    
+        collapsed: false,    
         items: [
           { text: '猫说', link: '/posts/essay/catSaid.md' },
           { text: '七夕随笔（其一）', link: '/posts/essay/ChineseValentine_Day(first)'},
@@ -170,12 +173,13 @@ export default withMermaid(defineConfig({
       // ========== 短篇小说 ==========
       {
         text: '短篇小说',
-        collapsible: true,    
+        collapsed: false,    
         items: [
           { text: '余响', link: '/posts/novel/echo.md' },
           { text: '未命名故事', link: '/posts/novel/story.md' }
         ]
-      }
-    ]
+      }]
+      
+	}
   }
 }))
