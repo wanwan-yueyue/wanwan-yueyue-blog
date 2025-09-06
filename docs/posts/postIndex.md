@@ -26,6 +26,14 @@ title: 文章汇总  # 浏览器标签页标题
   </div>  
 </div>  
 
+## 学科论文
+<div class="card-list">
+  <div class="card">
+      <h3>拉格朗日方程在机械臂中的数学建模</h3>
+      <p>本文较为详细产生了拉格朗日方程在构建机械臂运动学模型的数学建模过程推导，深入浅出，从拉格朗日方程的推导开始系统阐述，并给出了机械臂的物理动力学模型</p>
+      <a href="/posts/essay/Leave_or_wait.md" class="card-link">阅读全文 →</a>
+    </div>
+</div>
 
 ## 生活随笔  
 <div class="card-list">  
@@ -39,6 +47,21 @@ title: 文章汇总  # 浏览器标签页标题
     <p>雨训后被逼疯写的小诗</p>  
     <a href="/posts/essay/militaryTraining" class="card-link">阅读全文 →</a>  
   </div>  
+  <div class="card">
+    <h3>Leave or Wait</h3>
+    <p>一则辩题后的思考</p>
+    <a href="/posts/essay/Leave_or_wait.md" class="card-link">阅读全文 →</a>
+  </div>
+  <div class="card">
+    <h3>杂篇六则</h3>
+    <p>一段日子内的随笔</p>
+    <a href="/posts/essay/miscellaneous_notes.md" class="card-link">阅读全文 →</a>
+  </div>
+  <div class="card">
+    <h3>七夕随笔（其一）</h3>
+    <p>其实是作者七夕时候的碎碎念</p>
+    <a href="/posts/essay/ChineseValentine_Day(first).md" class="card-link">阅读全文 →</a>
+  </div>
 </div>  
 
 

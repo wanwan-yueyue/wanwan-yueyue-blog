@@ -134,110 +134,112 @@
 </div>
 
 <script type="text/javascript">
-// 使用MutationObserver确保DOM完全加载后再执行脚本（避免找不到元素）
-function initLetterScript() {
-  console.log('信件脚本开始执行');
+// 只在浏览器环境中执行（避免SSR阶段报错）
+if (typeof window !== 'undefined') {
+  function initLetterScript() {
+    console.log('信件脚本开始执行');
 
-  // 1. 查找DOM元素（双重校验，避免报错）
-  const letterContent = document.getElementById('letterContent');
-  const revealBtn = document.getElementById('revealBtn');
-  if (!letterContent || !revealBtn) {
-    console.error('⚠️ 未找到信件容器或按钮！请检查id是否正确：');
-    console.log('letterContent:', letterContent);
-    console.log('revealBtn:', revealBtn);
-    return;
-  }
-  console.log('✅ 成功找到DOM元素，开始初始化信件');
-  
-  // 信件内容（保留原有文本）
-  const letterLines = [
-    "画室的光越来越暗了。",
-    "你画樱花时总爱开着南窗，风灌进来把画纸吹的卷边，",
-    "以前觉得是活气，现在只觉得烦躁。",
-    "挪威的极光，或许只是我随口说的吧？",
-    "谁会真的为了这团光跑那么远，疯了吗？",
-    "我想换个地方画画，去找找灵感，",
-    "不用等谁，也不用被谁等。"
-  ];
+    // 1. 查找DOM元素（双重校验，避免报错）
+    const letterContent = document.getElementById('letterContent');
+    const revealBtn = document.getElementById('revealBtn');
+    if (!letterContent || !revealBtn) {
+      console.error('⚠️ 未找到信件容器或按钮！请检查id是否正确：');
+      console.log('letterContent:', letterContent);
+      console.log('revealBtn:', revealBtn);
+      return;
+    }
+    console.log('✅ 成功找到DOM元素，开始初始化信件');
+    
+    // 信件内容（保留原有文本）
+    const letterLines = [
+      "画室的光越来越暗了。",
+      "你画樱花时总爱开着南窗，风灌进来把画纸吹的卷边，",
+      "以前觉得是活气，现在只觉得烦躁。",
+      "挪威的极光，或许只是我随口说的吧？",
+      "谁会真的为了这团光跑那么远，疯了吗？",
+      "我想换个地方画画，去找找灵感，",
+      "不用等谁，也不用被谁等。"
+    ];
 
-  // 初始化信件（核心修改：给元素加hidden类，初始隐藏）
-  function initLetter() {
-    letterContent.innerHTML = ''; // 清空容器，避免重复渲染
-    
-    // 生成信件行：加letter-line + hidden类（初始隐藏）
-    letterLines.forEach(line => {
-      const lineEl = document.createElement('div');
-      lineEl.classList.add('letter-line', 'hidden'); // 关键：加hidden类
-      lineEl.textContent = line; // 纯文本渲染，避免XSS风险
-      letterContent.appendChild(lineEl);
-    });
-    
-    // 生成落款：加letter-signature + hidden类（初始隐藏）
-    const signature = document.createElement('div');
-    signature.classList.add('letter-signature', 'hidden'); // 关键：加hidden类
-    signature.textContent = "沈野";
-    letterContent.appendChild(signature);
-  }
-
-  // 逐行显示逻辑（核心修改：移除hidden类+加visible类）
-  function revealLetter() {
-    // 按钮状态锁定：禁用+改文字，防止重复点击
-    revealBtn.disabled = true;
-    revealBtn.textContent = '阅读中...';
-    
-    // 获取所有信件行和落款
-    const lines = document.querySelectorAll('.letter-line');
-    const signature = document.querySelector('.letter-signature');
-    let delay = 0; // 逐行延迟时间（毫秒）
-    
-    // 逐行显示：每2秒显示一行，最后一行后显示落款
-    lines.forEach((line, idx) => {
-      setTimeout(() => {
-        line.classList.remove('hidden'); // 移除隐藏类
-        line.classList.add('visible');  // 添加显示类（触发动画）
-        
-        // 最后一行显示后，延迟1秒显示落款
-        if (idx === lines.length - 1) {
-          setTimeout(() => {
-            signature.classList.remove('hidden'); // 落款移除隐藏
-            signature.classList.add('visible');  // 落款添加显示
-            revealBtn.textContent = '已阅读'; // 按钮状态更新
-          }, 1000);
-        }
-      }, delay);
+    // 初始化信件（核心修改：给元素加hidden类，初始隐藏）
+    function initLetter() {
+      letterContent.innerHTML = ''; // 清空容器，避免重复渲染
       
-      delay += 2000; // 每行间隔2秒，模拟手写阅读节奏
-    });
+      // 生成信件行：加letter-line + hidden类（初始隐藏）
+      letterLines.forEach(line => {
+        const lineEl = document.createElement('div');
+        lineEl.classList.add('letter-line', 'hidden'); // 关键：加hidden类
+        lineEl.textContent = line; // 纯文本渲染，避免XSS风险
+        letterContent.appendChild(lineEl);
+      });
+      
+      // 生成落款：加letter-signature + hidden类（初始隐藏）
+      const signature = document.createElement('div');
+      signature.classList.add('letter-signature', 'hidden'); // 关键：加hidden类
+      signature.textContent = "沈野";
+      letterContent.appendChild(signature);
+    }
+
+    // 逐行显示逻辑（核心修改：移除hidden类+加visible类）
+    function revealLetter() {
+      // 按钮状态锁定：禁用+改文字，防止重复点击
+      revealBtn.disabled = true;
+      revealBtn.textContent = '阅读中...';
+      
+      // 获取所有信件行和落款
+      const lines = document.querySelectorAll('.letter-line');
+      const signature = document.querySelector('.letter-signature');
+      let delay = 0; // 逐行延迟时间（毫秒）
+      
+      // 逐行显示：每2秒显示一行，最后一行后显示落款
+      lines.forEach((line, idx) => {
+        setTimeout(() => {
+          line.classList.remove('hidden'); // 移除隐藏类
+          line.classList.add('visible');  // 添加显示类（触发动画）
+          
+          // 最后一行显示后，延迟1秒显示落款
+          if (idx === lines.length - 1) {
+            setTimeout(() => {
+              signature.classList.remove('hidden'); // 落款移除隐藏
+              signature.classList.add('visible');  // 落款添加显示
+              revealBtn.textContent = '已阅读'; // 按钮状态更新
+            }, 1000);
+          }
+        }, delay);
+        
+        delay += 2000; // 每行间隔2秒，模拟手写阅读节奏
+      });
+    }
+
+    // 执行初始化 + 绑定按钮点击事件
+    initLetter();
+    revealBtn.addEventListener('click', revealLetter);
+    console.log('✅ 信件初始化完成，点击事件已绑定');
   }
 
-  // 执行初始化 + 绑定按钮点击事件
-  initLetter();
-  revealBtn.addEventListener('click', revealLetter);
-  console.log('✅ 信件初始化完成，点击事件已绑定');
+  // MutationObserver：监听DOM变化，直到目标元素出现再执行脚本
+  const observer = new MutationObserver(function(mutations, me) {
+    const letterContent = document.getElementById('letterContent');
+    const revealBtn = document.getElementById('revealBtn');
+    
+    // 元素存在则执行脚本，同时停止监听
+    if (letterContent && revealBtn) {
+      initLetterScript();
+      me.disconnect(); // 停止观察，避免资源浪费
+      return;
+    }
+  });
+
+  // 开始监听整个文档的DOM变化（子元素新增/删除、子树变化）
+  observer.observe(document, {
+    childList: true,
+    subtree: true
+  });
+
+  // 超时保护：10秒后若仍未找到元素，停止监听（避免无限循环）
+  setTimeout(() => {
+    observer.disconnect();
+    console.warn('⌛ 10秒后仍未找到信件元素，已停止监听');
+  }, 10000);
 }
-
-// MutationObserver：监听DOM变化，直到目标元素出现再执行脚本
-const observer = new MutationObserver(function(mutations, me) {
-  const letterContent = document.getElementById('letterContent');
-  const revealBtn = document.getElementById('revealBtn');
-  
-  // 元素存在则执行脚本，同时停止监听
-  if (letterContent && revealBtn) {
-    initLetterScript();
-    me.disconnect(); // 停止观察，避免资源浪费
-    return;
-  }
-});
-
-// 开始监听整个文档的DOM变化（子元素新增/删除、子树变化）
-observer.observe(document, {
-  childList: true,
-  subtree: true
-});
-
-// 超时保护：10秒后若仍未找到元素，停止监听（避免无限循环）
-setTimeout(() => {
-  observer.disconnect();
-  console.warn('⌛ 10秒后仍未找到信件元素，已停止监听');
-}, 10000);
 </script>
