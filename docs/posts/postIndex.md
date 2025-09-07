@@ -69,9 +69,14 @@ title: 文章汇总  # 浏览器标签页标题
 <div class="card-list">  
   <div class="card">  
     <h3>余响</h3>  
-    <p>短篇故事：余韵悠长的叙事</p>  
+    <p>念念不忘，必有回响</p>  
     <a href="/posts/novel/echo" class="card-link">阅读全文 →</a>  
   </div>  
+  <div class="card">  
+    <h3>衔香记：一瓣栀子渡余生</h3>  
+    <p>衔香记” 是小说的核心动作 —— 猫衔着栀子花跃入病房，这是联结的开始；“一瓣栀子渡余生” 既指猫用生命 “渡” 苏念的余生，也指 “栀子花” 这一意象，成了渡兄妹 “从病痛到平安”、渡猫 “从流浪到有意义” 的精神载体。</p>  
+    <a href="/posts/novel/echo" class="card-link">阅读全文 →</a>  
+  </div>
   <div class="card">  
     <h3>未命名故事</h3>  
     <p>待完善的短篇创作草稿</p>  
