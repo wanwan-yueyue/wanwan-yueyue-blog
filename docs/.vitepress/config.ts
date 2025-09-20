@@ -176,6 +176,7 @@ export default withMermaid(defineConfig({
         collapsed: false,    
         items: [
           { text: '余响', link: '/posts/novel/echo.md' },
+		  { text: '三勺石绿，半勺藤黄', link: '/posts/novel/三勺石绿，半勺藤黄.md'},
 		  { text: '衔香记：一瓣栀子渡余生', link: '/posts/novel/衔香记：一瓣栀子渡余生.md' },
           { text: '未命名故事', link: '/posts/novel/story.md' }
         ]
