@@ -17,9 +17,9 @@
 <div class="card-list">  
   <!-- 文章 1 -->  
   <div class="card">  
-    <h3>基于 C51 单片机的音乐播放器</h3>  
-    <p>蜂鸣器 + 按键控制实现多曲目切换</p>  
-    <a href="/posts/project/C51音乐播放器" class="card-link">阅读全文 →</a>  
+    <h3>三勺石绿，半勺藤黄</h3>  
+    <p>江南梅雨时节，拓印匠人阿竹在挚友阿舟因流言与生计离去后，于孤独坚守中，通过为乡邻拓印承载记忆的老物件，最终领悟手艺的真谛并非对抗时代，而是守护人心深处无法被机器复制的温度与记忆。</p>  
+    <a href="/posts/novel/三勺石绿，半勺藤黄.md" class="card-link">阅读全文 →</a>  
   </div>  
   <!-- 文章 2 -->  
   <div class="card">  
